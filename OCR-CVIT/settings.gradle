@@ -1,0 +1,4 @@
+include ':app'
+include ':libraries:simple-crop-image-lib'
+include ':libs:jimi.jar'
+include ':libs:ij.jar'
