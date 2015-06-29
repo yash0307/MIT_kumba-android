@@ -5,4 +5,4 @@
     <item android:state_focused="true" android:drawable="@drawable/btn_crop_pressed"/>
     <item android:state_focused="false" android:state_pressed="false" android:drawable="@drawable/btn_crop_operator"/>
 </selector>
-<!-- From: file:/home/yash/Desktop/OCR-CVIT/libraries/simple-crop-image-lib/res/drawable/selector_crop_button.xml --><!-- From: file:/home/yash/Desktop/OCR-CVIT/libraries/simple-crop-image-lib/build/intermediates/bundles/debug/res/drawable/selector_crop_button.xml -->
+<!-- From: file:/home/yash/MIT_kumba-android/OCR-CVIT/libraries/simple-crop-image-lib/res/drawable/selector_crop_button.xml --><!-- From: file:/home/yash/MIT_kumba-android/OCR-CVIT/libraries/simple-crop-image-lib/build/intermediates/bundles/debug/res/drawable/selector_crop_button.xml -->

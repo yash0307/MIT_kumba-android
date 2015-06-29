@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/home/yash/Desktop/OCR-CVIT/libraries/simple-crop-image-lib/res/values/strings.xml -->
+    <!-- From: file:/home/yash/MIT_kumba-android/OCR-CVIT/libraries/simple-crop-image-lib/res/values/strings.xml -->
     <eat-comment/>
     <string name="cancel">Cancel</string>
     <string name="no_storage_card">No storage card</string>
@@ -9,7 +9,7 @@
     <string name="save">Save</string>
     <string name="saving_image">Saving image</string>
     <string name="use_original">Use Original</string>
-    <!-- From: file:/home/yash/Desktop/OCR-CVIT/libraries/simple-crop-image-lib/res/values/styles.xml -->
+    <!-- From: file:/home/yash/MIT_kumba-android/OCR-CVIT/libraries/simple-crop-image-lib/res/values/styles.xml -->
     <eat-comment/>
     <style name="CropButton">
         <item name="android:layout_margin">1dp</item>

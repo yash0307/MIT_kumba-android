@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/home/yash/Desktop/OCR-CVIT/libraries/simple-crop-image-lib/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/home/yash/MIT_kumba-android/OCR-CVIT/libraries/simple-crop-image-lib/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <string name="cancel">Cancel</string>
     <string name="no_storage_card">No storage card</string>

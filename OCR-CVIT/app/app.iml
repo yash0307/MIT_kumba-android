@@ -94,10 +94,11 @@
     <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="ij" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name=":libs:commons-lang3-3.4" level="project" />
     <orderEntry type="library" exported="" name="jimi" level="project" />
     <orderEntry type="library" exported="" name=":libs:ij" level="project" />
-    <orderEntry type="library" exported="" name="android-async-http-1.4.6" level="project" />
     <orderEntry type="library" exported="" name="httpmime-4.2.3" level="project" />
+    <orderEntry type="library" exported="" name="android-async-http-1.4.6" level="project" />
     <orderEntry type="module" module-name="simple-crop-image-lib" exported="" />
   </component>
 </module>
