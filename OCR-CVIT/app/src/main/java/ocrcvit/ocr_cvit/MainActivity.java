@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.speech.tts.TextToSpeech;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -40,6 +41,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 import com.loopj.android.http.*;
 import org.apache.http.*;
@@ -71,6 +73,10 @@ public class MainActivity extends Activity {
     private String globResponseString;
 
     final Context context = this;
+
+    private TextToSpeech t1;
+
+    private String choosenLanguage;
 
     public static
     String unescape_perl_string(String oldstr) {
@@ -344,12 +350,12 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
 
                 takePicture();
-                dialog = ProgressDialog.show(MainActivity.this, "", "Uploading file...", true);
+                /*dialog = ProgressDialog.show(MainActivity.this, "", "Uploading file...", true);
                 new Thread(new Runnable() {
                     public void run() {
                         uploadFile(mFileTemp.getPath(), languageSpinner.getSelectedItem().toString());
                     }
-                }).start();
+                }).start();*/
 
             }
         });
@@ -507,6 +513,7 @@ public class MainActivity extends Activity {
         client.setCookieStore(myCookieStore);
         RequestParams params = new RequestParams();
         File sourceFile = new File(sourceFileUri);
+        choosenLanguage = lang;
         params.put("lang", lang);
         try {
             params.put("image", sourceFile);
@@ -543,9 +550,9 @@ public class MainActivity extends Activity {
                         alert.setMessage(str);
                         alert.show();*/
                         AlertDialog dialog = new AlertDialog.Builder(context).setMessage("").show();
-                        TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Devlys_010.ttf");
-                        textView.setTypeface(face);
+                        //TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+                        //Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Devlys_010.ttf");
+                        //textView.setTypeface(face);
                         str = unescape_perl_string(str);
                         dialog.setMessage(str);
                     }
@@ -569,12 +576,41 @@ public class MainActivity extends Activity {
                     @Override
                     public void run() {
                         String str = globResponseString;
-                        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Ananda.ttf");
+                        //Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Ananda.ttf");
                         AlertDialog dialog = new AlertDialog.Builder(context).setMessage("").show();
-                        TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                        textView.setTypeface(face);
+                        //TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+                        //textView.setTypeface(face);
                         str = unescape_perl_string(str);
                         dialog.setMessage(str);
+                        t1= new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+                            @Override
+                            public void onInit(int status) {
+                                if(status != TextToSpeech.ERROR) {
+                                    String str = unescape_perl_string(globResponseString);
+                                    if(choosenLanguage=="English") {
+                                        int result = t1.setLanguage(Locale.US);
+                                        if (result == TextToSpeech.LANG_MISSING_DATA
+                                                || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                                            Log.e("TTS", "This Language is not supported");
+                                        }
+                                        else {
+                                            t1.speak(str, TextToSpeech.QUEUE_FLUSH, null);
+                                        }
+                                    }
+                                    else if (choosenLanguage=="Hindi") {
+                                        int result = t1.setLanguage(new Locale("hin-IND"));
+                                        if (result == TextToSpeech.LANG_MISSING_DATA
+                                                || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                                            Log.e("TTS", "This Language is not supported");
+                                        }
+                                        else {
+                                            t1.speak(str, TextToSpeech.QUEUE_FLUSH, null);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+
                         //dialog.setTitle("Success");
                         //dialog.show();
 
