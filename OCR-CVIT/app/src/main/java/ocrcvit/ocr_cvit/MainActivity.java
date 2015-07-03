@@ -274,23 +274,16 @@ public class MainActivity extends Activity {
                     }
                     newstr.append(Character.toChars(value));
                     i += j-1;
-                    break; /* switch */
+                    break;
                 }
 
                 default:   newstr.append('\\');
                     newstr.append(Character.toChars(cp));
-           /*
-            * say(String.format(
-            *       "DEFAULT unrecognized escape %c passed through",
-            *       cp));
-            */
-                    break; /* switch */
+                    break;
 
             }
             saw_backslash = false;
         }
-
-    /* weird to leave one at the end */
         if (saw_backslash) {
             newstr.append('\\');
         }
@@ -350,13 +343,6 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
 
                 takePicture();
-                /*dialog = ProgressDialog.show(MainActivity.this, "", "Uploading file...", true);
-                new Thread(new Runnable() {
-                    public void run() {
-                        uploadFile(mFileTemp.getPath(), languageSpinner.getSelectedItem().toString());
-                    }
-                }).start();*/
-
             }
         });
 
@@ -545,15 +531,8 @@ public class MainActivity extends Activity {
                     @Override
                     public void run() {
                         String str = globResponseString;
-                        /*AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                        alert.setTitle("Failure");
-                        alert.setMessage(str);
-                        alert.show();*/
                         AlertDialog dialog = new AlertDialog.Builder(context).setMessage("").show();
-                        //TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                        //Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Devlys_010.ttf");
-                        //textView.setTypeface(face);
-                        str = unescape_perl_string(str);
+                       str = unescape_perl_string(str);
                         dialog.setMessage(str);
                     }
                 });
@@ -566,20 +545,11 @@ public class MainActivity extends Activity {
                 dialog.dismiss();
                 Log.i("uploadFile", "Success!" + responseString);
                 globResponseString = responseString;
-                /*runOnUiThread(new Runnable() {
-                    public void run() {
-                        Toast.makeText(MainActivity.this, globResponseString, Toast.LENGTH_SHORT).show();
-                    }
-                });*/
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String str = globResponseString;
-                        //Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Ananda.ttf");
                         AlertDialog dialog = new AlertDialog.Builder(context).setMessage("").show();
-                        //TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                        //textView.setTypeface(face);
                         str = unescape_perl_string(str);
                         dialog.setMessage(str);
                         t1= new TextToSpeech(context, new TextToSpeech.OnInitListener() {
@@ -610,15 +580,6 @@ public class MainActivity extends Activity {
                                 }
                             }
                         });
-
-                        //dialog.setTitle("Success");
-                        //dialog.show();
-
-                        /*Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Devlys_010.ttf");
-                        AlertDialog dialog = new AlertDialog.Builder(context).setMessage("").show();
-                        TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                        textView.setTypeface(face);
-                        dialog.setMessage(str);*/
                     }
                 });
             }
@@ -640,41 +601,13 @@ public void binarizeAndSaveIntheSameLocation()
     final Paint paint = new Paint();
     final ColorMatrix cm = new ColorMatrix();
     cm.setSaturation(0);
-    //filter converts the image to greyscale.
-    //final ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
-    //paint.setColorFilter(f);
-    c.drawBitmap(bitmapColor, 0, 0, paint); //now the bmpGrayscalewillbe in gray  mode
-
+    c.drawBitmap(bitmapColor, 0, 0, paint);
     bitmapColor.recycle();
-
-    /*
-
-    when the bitmap is written to mfiltemp location using fileoutputstream; the image was loaded correctly
-    on the crop view and was shown crrectly in the main layout
-
-    but on upload the iamge was not appearing in the uploads folder in the server.
-    at the same time when the image was cropped ( after crop a save happens there) there was no issue
-
-    so now saving is done after geting contentresolver etc using outputstream ( as it is done in the save fuction in crop library)
-    even this didnt work
-
-    update - anytime even if gray is passed, if crop is done image was successfully uploaded
-     */
-
-    //now save the graybitmap to the mFileTemp location
-
-    //http://stackoverflow.com/questions/7769806/convert-bitmap-to-file
-
-    //saving as suggested in the above stackoverflow thread fixed the issue
     ByteArrayOutputStream bos = new ByteArrayOutputStream();
-   // Bitmap onlyAlpha=bmpGrayscale.extractAlpha();
-
     bmpGrayscale.compress(Bitmap.CompressFormat.JPEG,100,bos);
-
     Boolean hasAlpha=bmpGrayscale.hasAlpha();
     Log.w("myApp", "has alpha?" + Boolean.toString(hasAlpha));
     bmpGrayscale.recycle();
-
     byte[] bitmapdata = bos.toByteArray();
     try {
         FileOutputStream fos = new FileOutputStream(mFileTemp);
@@ -686,9 +619,6 @@ public void binarizeAndSaveIntheSameLocation()
     } catch (IOException e) {
         e.printStackTrace();
     }
-
-
-
 }
 
 }
